@@ -5,9 +5,11 @@ import PriceFilter from "./PriceFilter";
 interface SidebarFiltersProps {
     products: Product[];
     filteredProducts: Product[];
+    selectedCategory: string;
+    onSelectCategory: (filters: string) => void;
 }
 
-export default function SidebarFilters({ products, filteredProducts }: SidebarFiltersProps) {
+export default function SidebarFilters({ products, filteredProducts, selectedCategory, onSelectCategory }: SidebarFiltersProps) {
     const maxPrice = Math.max(...products.map((p) => p.price));
 
     return (
@@ -16,6 +18,8 @@ export default function SidebarFilters({ products, filteredProducts }: SidebarFi
                 <CategoryFilter
                     products={products}
                     filteredProducts={filteredProducts}
+                    selectedCategory={selectedCategory}
+                    onSelectCategory={onSelectCategory}
                 />
 
                 <div className="my-5 h-px bg-slate-100"></div>

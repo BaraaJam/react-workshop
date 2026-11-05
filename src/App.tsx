@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 function App() {
 
+    const [selectedCategory, setSelectedCategory] = useState("all");
     const [searchTerm, setSearchTerm] = useState("");
 
     // 1. Convert search term to lowercase once
@@ -17,7 +18,9 @@ function App() {
     const filteredProducts = products.filter((product) => {
         const matchesTitle = product.title.toLowerCase().includes(query);
         const matchesCategory = product.category.toLowerCase().includes(query);
-        return matchesTitle || matchesCategory;
+        const matchesSearch = matchesTitle || matchesCategory;
+        const matchesSelectedCategory = selectedCategory === "all" || product.category === selectedCategory;
+        return matchesSearch && matchesSelectedCategory;
     });
 
     return (
@@ -33,6 +36,8 @@ function App() {
                     <SidebarFilters
                         products={products}
                         filteredProducts={filteredProducts}
+                        selectedCategory={selectedCategory}
+                        onSelectCategory={setSelectedCategory}
                     />
 
                     {/* Right Column: Products (col-span-9) */}

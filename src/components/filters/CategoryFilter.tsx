@@ -3,9 +3,11 @@ import type { Product } from "../../types/product.ts";
 interface CategoryFilterProps {
     products: Product[];
     filteredProducts: Product[];
+    selectedCategory?: string;
+    onSelectCategory?: (filters: string) => void;
 }
 
-export default function CategoryFilter({ products, filteredProducts }: CategoryFilterProps) {
+export default function CategoryFilter({ products, filteredProducts,selectedCategory, onSelectCategory }: CategoryFilterProps) {
     const totalCount = products.length;
     const uniqueCategories = Array.from(new Set(products.map((p) => p.category)));
 
@@ -30,7 +32,8 @@ export default function CategoryFilter({ products, filteredProducts }: CategoryF
                         <input
                             type="checkbox"
                             value={cat.value}
-                            defaultChecked={cat.value === 'all'}
+                            checked={selectedCategory === cat.value}
+                            onChange={() => onSelectCategory?.(cat.value)}
                             className="h-4.5 w-4.5 rounded-md border border-slate-200 accent-blue-600 cursor-pointer"
                         />
                         <span className="flex-1 text-sm text-slate-700 font-medium">
