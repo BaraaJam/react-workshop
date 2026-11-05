@@ -2,6 +2,7 @@ import type { Product } from '../../types/product';
 import ProductCard from "./ProductCard.tsx";
 import Pagination from "./Pagination.tsx";
 import {ChevronDown, SearchX} from "lucide-react";
+import {useMemo, useState} from "react";
 
 interface ProductGridProps {
     products: Product[];
@@ -11,6 +12,19 @@ interface ProductGridProps {
 export default function ProductGrid({ products, totalCount }: ProductGridProps) {
     const itemsPerPage = 6;
     const totalPages = Math.ceil(products.length / itemsPerPage);
+    const [sortBy, setSortBy] = useState('Newest');
+
+    const sortedProducts = useMemo(() => {
+        // Always spread [...] to create a shallow copy, because .sort() mutates the original array
+        return [...products].sort((a, b) => {
+            if (sortBy === 'Name') return a.title.localeCompare(b.title);
+            if (sortBy === 'Newest') return b.id - a.id;
+            if (sortBy === 'PriceAsc') return a.price - b.price;
+            if (sortBy === 'PriceDes') return b.price - a.price;
+            if (sortBy === 'BestSelling') return b.rating - a.rating;
+            return 0;
+        });
+    }, [products, sortBy]);
 
     // Create an array of page numbers: [1, 2]
     const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -27,13 +41,15 @@ export default function ProductGrid({ products, totalCount }: ProductGridProps) 
                         <span className="hidden sm:inline">Sort by:</span>
                         <div className="relative">
                             <select
-                                defaultValue="Newest"
+                                value={sortBy}
+                                onChange={(e) => setSortBy(e.target.value)}
                                 className="appearance-none border border-slate-200 bg-white rounded-xl py-2 pl-3 pr-9 text-sm text-slate-950 transition-all duration-200 outline-none cursor-pointer focus:border-blue-400 focus:ring-4 focus:ring-blue-600/10"
                             >
+                                <option value="Name">Name</option>
                                 <option value="Newest">Newest</option>
-                                <option value="Price: Low to High">Price: Low to High</option>
-                                <option value="Price: High to Low">Price: High to Low</option>
-                                <option value="Best Selling">Best Selling</option>
+                                <option value="PriceAsc">Price: Low to High</option>
+                                <option value="PriceDes">Price: High to Low</option>
+                                <option value="BestSelling">Best Selling</option>
                             </select>
                             <ChevronDown size={16} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
                         </div>
@@ -56,7 +72,7 @@ export default function ProductGrid({ products, totalCount }: ProductGridProps) 
                         <>
                             {/* 2. Grid of Cards */}
                             <div id="product-grid" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                                {products.map((product) => (
+                                {sortedProducts.map((product) => (
                                     <ProductCard key={product.id} product={product} />
                                 ))}
                             </div>
