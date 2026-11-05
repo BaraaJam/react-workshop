@@ -1,7 +1,7 @@
 import type { Product } from '../../types/product';
 import ProductCard from "./ProductCard.tsx";
 import Pagination from "./Pagination.tsx";
-import {ChevronDown} from "lucide-react";
+import {ChevronDown, SearchX} from "lucide-react";
 
 interface ProductGridProps {
     products: Product[];
@@ -39,15 +39,30 @@ export default function ProductGrid({ products }: ProductGridProps) {
 
                 <div className="mt-5 mb-6 h-px bg-slate-100"></div>
 
-                {/* 2. Grid of Cards */}
-                <div id="product-grid" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
+                {products.length === 0 ? (
+                    <div className="py-16 text-center">
+                        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 mb-4">
+                            <SearchX size={32} />
+                        </div>
+                        <h3 className="text-lg font-bold text-slate-900 mb-1">No products found</h3>
+                        <p className="text-sm text-slate-500 max-w-sm mx-auto">
+                            We couldn't find any products matching your search. Try checking for typos or searching for a different keyword.
+                        </p>
+                    </div>
+                    ) : (
+                        <>
+                            {/* 2. Grid of Cards */}
+                            <div id="product-grid" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                                {products.map((product) => (
+                                    <ProductCard key={product.id} product={product} />
+                                ))}
+                            </div>
+                            {/* 3. Pagination */}
+                            <Pagination currentPage={1} totalPages={totalPages} pages={pages} />
+                        </>
+                )}
 
-                {/* 3. Pagination */}
-                <Pagination currentPage={1} totalPages={totalPages} pages={pages} />
+
             </div>
         </section>
     );
