@@ -2,9 +2,10 @@ import type { Product } from "../../types/product.ts";
 
 interface CategoryFilterProps {
     products: Product[];
+    filteredProducts: Product[];
 }
 
-export default function CategoryFilter({ products }: CategoryFilterProps) {
+export default function CategoryFilter({ products, filteredProducts }: CategoryFilterProps) {
     const totalCount = products.length;
     const uniqueCategories = Array.from(new Set(products.map((p) => p.category)));
 
@@ -13,7 +14,7 @@ export default function CategoryFilter({ products }: CategoryFilterProps) {
         ...uniqueCategories.map((cat) => ({
             name: cat,
             value: cat,
-            count: products.filter((p) => p.category === cat).length,
+            count: filteredProducts.filter((p) => p.category === cat).length,
         })),
     ];
 

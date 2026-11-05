@@ -4,15 +4,19 @@ import PriceFilter from "./PriceFilter";
 
 interface SidebarFiltersProps {
     products: Product[];
+    filteredProducts: Product[];
 }
 
-export default function SidebarFilters({ products }: SidebarFiltersProps) {
+export default function SidebarFilters({ products, filteredProducts }: SidebarFiltersProps) {
     const maxPrice = Math.max(...products.map((p) => p.price));
 
     return (
         <aside className="lg:col-span-3 lg:sticky lg:top-20 self-start">
             <div className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-400 p-5">
-                <CategoryFilter products={products} />
+                <CategoryFilter
+                    products={products}
+                    filteredProducts={filteredProducts}
+                />
 
                 <div className="my-5 h-px bg-slate-100"></div>
 

@@ -5,9 +5,10 @@ import {ChevronDown, SearchX} from "lucide-react";
 
 interface ProductGridProps {
     products: Product[];
+    totalCount?: number;
 }
 
-export default function ProductGrid({ products }: ProductGridProps) {
+export default function ProductGrid({ products, totalCount }: ProductGridProps) {
     const itemsPerPage = 6;
     const totalPages = Math.ceil(products.length / itemsPerPage);
 
@@ -19,7 +20,9 @@ export default function ProductGrid({ products }: ProductGridProps) {
                 {/* 1. Title + Sort dropdown */}
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <h1 className="text-xl font-bold tracking-tight text-slate-900">Recommended for you</h1>
-
+                        <p className="text-xs text-slate-500 font-medium">
+                            Showing {products.length} of {totalCount} products
+                        </p>
                     <label className="inline-flex items-center gap-2 text-sm text-slate-600">
                         <span className="hidden sm:inline">Sort by:</span>
                         <div className="relative">
