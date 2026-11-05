@@ -2,15 +2,23 @@ import { Search } from 'lucide-react';
 
 interface SearchInputProps {
     placeholder?: string;
+    value?: string;
+    onChange?: (newValue: string) => void;
 }
 
-export default function SearchInput({ placeholder = "Search products..." }: SearchInputProps) {
+export default function SearchInput({
+                                        placeholder = "Search products...",
+                                        value,
+                                        onChange
+}: SearchInputProps) {
     return (
         <div className="relative hidden sm:block">
             <input
                 id="search-input"
                 type="text"
                 placeholder={placeholder}
+                value={value}
+                onChange={(e) => onChange?.(e.target.value)}
                 className="h-10 w-48 rounded-xl bg-blue-500/30 pl-10 pr-4 text-xs font-medium text-blue-50 placeholder:text-blue-200/50 border border-blue-400/20 focus:bg-blue-500/50 focus:w-64 transition-all duration-300 outline-none"
             />
             <Search

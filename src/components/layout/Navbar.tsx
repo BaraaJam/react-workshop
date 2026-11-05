@@ -4,7 +4,12 @@ import CartButton from "./CartButton";
 
 const NAV_LINKS = ['New Arrival', 'Men', 'Women', 'Sale'];
 
-export default function Navbar() {
+interface NavbarProps {
+    searchTerm?: string;
+    onSearchChange?: (value: string) => void;
+}
+
+export default function Navbar({ searchTerm, onSearchChange }: NavbarProps) {
     return (
         <header className="sticky top-0 z-40 border-b border-blue-700/30 bg-blue-600 shadow-lg shadow-blue-900/10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -42,7 +47,10 @@ export default function Navbar() {
                             <span className="text-[10px] font-black uppercase tracking-widest text-blue-50">Live</span>
                         </div>
                         {/* Search */}
-                        <SearchInput/>
+                        <SearchInput
+                            value={searchTerm}
+                            onChange={onSearchChange}
+                        />
                         {/* Cart  */}
                         <CartButton count={0}/>
                         {/* User */}
