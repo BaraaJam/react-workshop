@@ -7,5 +7,6 @@ export interface Product {
     originalPrice?: number;
     rating: number;
     stockStatus: string;
+    inStock: boolean,
     badge?: string;
 }

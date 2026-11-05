@@ -10,17 +10,34 @@ function App() {
 
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [searchTerm, setSearchTerm] = useState("");
+    const [filterInStock, setFilterInStock] = useState(false);
+    const [filterOnSale, setFilterOnSale] = useState(false);
 
     // 1. Convert search term to lowercase once
     const query = searchTerm.toLowerCase();
 
     // 2. Filter products
     const filteredProducts = products.filter((product) => {
-        const matchesTitle = product.title.toLowerCase().includes(query);
-        const matchesCategory = product.category.toLowerCase().includes(query);
-        const matchesSearch = matchesTitle || matchesCategory;
-        const matchesSelectedCategory = selectedCategory === "all" || product.category === selectedCategory;
-        return matchesSearch && matchesSelectedCategory;
+        // 1. Search filter (title or category)
+        const matchesSearch =
+            product.title.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query);
+
+        // 2. Category filter
+        const matchesSelectedCategory =
+            selectedCategory === "all" || product.category === selectedCategory;
+
+        // 3. In Stock filter
+        const matchesStock =
+            !filterInStock || product.inStock;
+
+        // 4. On Sale filter
+        const isOnSale =
+            Boolean(product.originalPrice) && product.originalPrice! > product.price;
+        const matchesSale =
+            !filterOnSale || isOnSale;
+
+        return matchesSearch && matchesSelectedCategory && matchesStock && matchesSale;
     });
 
     return (
@@ -38,6 +55,10 @@ function App() {
                         filteredProducts={filteredProducts}
                         selectedCategory={selectedCategory}
                         onSelectCategory={setSelectedCategory}
+                        filterInStock={filterInStock}
+                        setFilterInStock={setFilterInStock}
+                        filterOnSale={filterOnSale}
+                        setFilterOnSale={setFilterOnSale}
                     />
 
                     {/* Right Column: Products (col-span-9) */}

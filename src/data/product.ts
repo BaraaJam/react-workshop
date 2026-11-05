@@ -10,6 +10,7 @@ export const products: Product[] = [
         originalPrice: 1450,
         rating: 4.9,
         stockStatus: 'In Stock • Ships in 2 days',
+        inStock: true,
         badge: 'Discount',
     },
     {
@@ -20,6 +21,7 @@ export const products: Product[] = [
         price: 650,
         rating: 4.8,
         stockStatus: 'In Stock • Ships in 2 days',
+        inStock: true,
         badge: 'Limited',
     },
     {
@@ -30,6 +32,7 @@ export const products: Product[] = [
         price: 1100,
         rating: 4.9,
         stockStatus: 'Back in stock next week',
+        inStock: false,
         badge: 'Sold Out',
     },
     {
@@ -40,6 +43,7 @@ export const products: Product[] = [
         price: 320,
         rating: 4.7,
         stockStatus: 'In Stock • ships in 1 day',
+        inStock: true,
         badge: 'Popular',
     },
     {
@@ -51,6 +55,7 @@ export const products: Product[] = [
         originalPrice: 2200,
         rating: 4.9,
         stockStatus: 'In Stock • Ships in 2 days',
+        inStock: true,
         badge: 'Hot Deal',
     },
     {
@@ -61,6 +66,7 @@ export const products: Product[] = [
         price: 240,
         rating: 4.6,
         stockStatus: 'In Stock • Ships in 1 day',
+        inStock: true,
         badge: 'New Arrival',
     },
 ];

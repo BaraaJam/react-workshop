@@ -7,9 +7,14 @@ interface SidebarFiltersProps {
     filteredProducts: Product[];
     selectedCategory: string;
     onSelectCategory: (filters: string) => void;
+    filterInStock: boolean;
+    setFilterInStock: (filters: boolean) => void;
+    filterOnSale: boolean;
+    setFilterOnSale: (filters: boolean) => void;
+
 }
 
-export default function SidebarFilters({ products, filteredProducts, selectedCategory, onSelectCategory }: SidebarFiltersProps) {
+export default function SidebarFilters({ products, filteredProducts, selectedCategory, onSelectCategory, filterInStock, setFilterInStock, filterOnSale, setFilterOnSale }: SidebarFiltersProps) {
     const maxPrice = Math.max(...products.map((p) => p.price));
 
     return (
@@ -35,6 +40,8 @@ export default function SidebarFilters({ products, filteredProducts, selectedCat
                         <label className="flex items-center gap-3 cursor-pointer select-none">
                             <input
                                 type="checkbox"
+                                checked={filterInStock}
+                                onChange={(e) => setFilterInStock(e.target.checked)}
                                 className="h-4.5 w-4.5 rounded-md border border-slate-200 accent-blue-600 cursor-pointer"
                             />
                             <span className="flex-1 text-sm text-slate-700">In Stock</span>
@@ -43,6 +50,8 @@ export default function SidebarFilters({ products, filteredProducts, selectedCat
                         <label className="flex items-center gap-3 cursor-pointer select-none">
                             <input
                                 type="checkbox"
+                                checked={filterOnSale}
+                                onChange={(e) => setFilterOnSale(e.target.checked)}
                                 className="h-4.5 w-4.5 rounded-md border border-slate-200 accent-blue-600 cursor-pointer"
                             />
                             <span className="flex-1 text-sm text-slate-700">On Sale</span>
