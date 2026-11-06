@@ -1,4 +1,4 @@
-import type { Product } from '../../types/product';
+import type {Product} from '../../types/product';
 import CategoryFilter from "./CategoryFilter";
 import PriceFilter from "./PriceFilter";
 
@@ -11,15 +11,30 @@ interface SidebarFiltersProps {
     setFilterInStock: (filters: boolean) => void;
     filterOnSale: boolean;
     setFilterOnSale: (filters: boolean) => void;
-
+    priceLimit: number;
+    onPriceChange: (newPrice: number) => void;
+    maxPrice: number;
 }
 
-export default function SidebarFilters({ products, filteredProducts, selectedCategory, onSelectCategory, filterInStock, setFilterInStock, filterOnSale, setFilterOnSale }: SidebarFiltersProps) {
-    const maxPrice = Math.max(...products.map((p) => p.price));
+export default function SidebarFilters({
+                                           products,
+                                           filteredProducts,
+                                           selectedCategory,
+                                           onSelectCategory,
+                                           filterInStock,
+                                           setFilterInStock,
+                                           filterOnSale,
+                                           setFilterOnSale,
+                                           priceLimit,
+                                           onPriceChange,
+                                           maxPrice,
+                                       }: SidebarFiltersProps) {
+
 
     return (
         <aside className="lg:col-span-3 lg:sticky lg:top-20 self-start">
-            <div className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-400 p-5">
+            <div
+                className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-400 p-5">
                 <CategoryFilter
                     products={products}
                     filteredProducts={filteredProducts}
@@ -29,7 +44,12 @@ export default function SidebarFilters({ products, filteredProducts, selectedCat
 
                 <div className="my-5 h-px bg-slate-100"></div>
 
-                <PriceFilter min={0} max={maxPrice} defaultValue={maxPrice / 2} />
+                <PriceFilter
+                    min={0}
+                    max={maxPrice}
+                    value={priceLimit}
+                    onChange={onPriceChange}
+                />
 
                 <div className="my-5 h-px bg-slate-100"></div>
 
@@ -60,7 +80,8 @@ export default function SidebarFilters({ products, filteredProducts, selectedCat
                 </section>
 
                 <section className="mt-6">
-                    <div className="rounded-[1.25rem] bg-linear-to-br from-blue-600 to-amber-500 text-white overflow-hidden relative p-6">
+                    <div
+                        className="rounded-[1.25rem] bg-linear-to-br from-blue-600 to-amber-500 text-white overflow-hidden relative p-6">
                         <h3 className="text-lg font-bold text-white">Summer Sale</h3>
                         <p className="mt-2 text-sm leading-relaxed opacity-90 text-white">
                             Get up to 50% off on all summer collections. Limited time offer!

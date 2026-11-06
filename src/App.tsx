@@ -3,15 +3,18 @@ import Newsletter from "./components/layout/Newsletter.tsx";
 import Footer from "./components/layout/Footer.tsx";
 import SidebarFilters from "./components/filters/SidebarFilters.tsx";
 import ProductGrid from "./components/products/ProductGrid.tsx";
-import { products } from "./data/product.ts";
-import { useState } from 'react';
+import {products} from "./data/product.ts";
+import {useState} from 'react';
 
 function App() {
+
+    const maxPrice = Math.max(...products.map((p) => p.price));
 
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [searchTerm, setSearchTerm] = useState("");
     const [filterInStock, setFilterInStock] = useState(false);
     const [filterOnSale, setFilterOnSale] = useState(false);
+    const [priceLimit, setPriceLimit] = useState(maxPrice);
 
     // 1. Convert search term to lowercase once
     const query = searchTerm.toLowerCase();
@@ -37,11 +40,15 @@ function App() {
         const matchesSale =
             !filterOnSale || isOnSale;
 
-        return matchesSearch && matchesSelectedCategory && matchesStock && matchesSale;
+        // 5. Price Range Slider
+        const matchesPrice = product.price <= priceLimit;
+
+        return matchesSearch && matchesSelectedCategory && matchesStock && matchesSale && matchesPrice;
     });
 
     return (
-        <div className="min-h-screen bg-slate-100/30 text-slate-950 antialiased font-sans flex flex-col justify-between">
+        <div
+            className="min-h-screen bg-slate-100/30 text-slate-950 antialiased font-sans flex flex-col justify-between">
             <Navbar
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}
@@ -59,6 +66,9 @@ function App() {
                         setFilterInStock={setFilterInStock}
                         filterOnSale={filterOnSale}
                         setFilterOnSale={setFilterOnSale}
+                        priceLimit={priceLimit}
+                        onPriceChange={setPriceLimit}
+                        maxPrice={maxPrice}
                     />
 
                     {/* Right Column: Products (col-span-9) */}
@@ -71,8 +81,8 @@ function App() {
             </main>
 
             <div>
-                <Newsletter />
-                <Footer />
+                <Newsletter/>
+                <Footer/>
             </div>
         </div>
     );
