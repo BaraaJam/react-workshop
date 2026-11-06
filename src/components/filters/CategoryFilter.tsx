@@ -23,7 +23,7 @@ export default function CategoryFilter({ products, filteredProducts,selectedCate
     return (
         <section aria-labelledby="filters-categories" className="space-y-4">
             <div className="flex items-center justify-between">
-                <h2 id="filters-categories" className="text-sm font-bold text-slate-900">Categories</h2>
+                <h2 id="filters-categories" className="text-sm font-bold text-slate-900 dark:text-white">Categories</h2>
             </div>
 
             <div className="space-y-3">
@@ -34,11 +34,11 @@ export default function CategoryFilter({ products, filteredProducts,selectedCate
                             value={cat.value}
                             checked={selectedCategory === cat.value}
                             onChange={() => onSelectCategory?.(cat.value)}
-                            className="h-4.5 w-4.5 rounded-md border border-slate-200 accent-blue-600 cursor-pointer"
+                            className="h-4.5 w-4.5 rounded-md border border-slate-200 dark:border-slate-700 accent-blue-600 cursor-pointer"
                         />
-                        <span className="flex-1 text-sm text-slate-700 font-medium">
-                    {cat.name} <span className="text-slate-400 font-normal">({cat.count})</span>
-                </span>
+                        <span className="flex-1 text-sm text-slate-700 dark:text-slate-300 font-medium">
+                            {cat.name} <span className="text-slate-400 dark:text-slate-500 font-normal">({cat.count})</span>
+                        </span>
                     </label>
                 ))}
             </div>

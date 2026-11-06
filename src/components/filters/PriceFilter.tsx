@@ -13,13 +13,13 @@ export default function PriceFilter({
                                     }: PriceFilterProps) {
     return (
         <section aria-labelledby="filters-price" className="space-y-3">
-            <h2 id="filters-price" className="text-sm font-bold text-slate-900">
+            <h2 id="filters-price" className="text-sm font-bold text-slate-900 dark:text-white">
                 Price Range
             </h2>
 
-            <div className="flex items-center justify-between text-xs text-slate-500">
+            <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                 <span>{min} kr</span>
-                <span className="font-bold text-blue-600">{value} kr</span>
+                <span className="font-bold text-blue-600 dark:text-blue-400">{value} kr</span>
             </div>
 
             <input

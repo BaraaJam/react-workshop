@@ -8,9 +8,9 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
     return(
-        <article className="border border-slate-200 rounded-[1.25rem] bg-white p-3 transition-all duration-400 hover:border-blue-400 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 group">
+        <article className="border border-slate-200 dark:border-slate-800 rounded-[1.25rem] bg-white dark:bg-slate-900/90 p-3 transition-all duration-400 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 group">
             {/* Image & Overlays Container */}
-            <div className="relative overflow-hidden rounded-2xl bg-slate-100">
+            <div className="relative overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800">
                 <img src={product.image} alt={product.title}
                      className="aspect-4/5 w-full object-cover group-hover:scale-110 transition-transform duration-700"/>
 
@@ -34,7 +34,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
                 {/* Favorite Heart Button */}
                 <button type="button"
-                        className="absolute right-3 top-3 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200/50 bg-white/70 text-slate-600 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-rose-500 hover:shadow-lg group/heart"
+                        className="absolute right-3 top-3 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200/50 dark:border-slate-700/50 bg-white/70 dark:bg-slate-800/70 text-slate-600 dark:text-slate-300 backdrop-blur-md transition-all duration-300 hover:bg-white dark:hover:bg-slate-800 hover:text-rose-500 hover:shadow-lg group/heart"
                         aria-label="Add to favorites" title="Favorite">
                     <Heart
                         size={20} className="transition-colors group-hover/heart:fill-rose-500 group-hover/heart:stroke-rose-500" />
@@ -45,20 +45,20 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="mt-4 px-1 pb-2 space-y-1">
                 {/* Category & Rating */}
                 <div className="flex items-center justify-between">
-                    <p className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-600/70">
+                    <p className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-600/70 dark:text-blue-400">
                         {product.category}
                     </p>
                     <div className="flex items-center gap-1">
                         <Star size={10} className="fill-amber-400 text-amber-400"/>
-                        <span className="text-[10px] font-bold text-slate-400">{product.rating}</span>
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500">{product.rating}</span>
                     </div>
                 </div>
                 {/* Title */}
-                <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {product.title}
                 </h3>
                 {/* Stock Status text */}
-                <p className="text-[11px] font-medium text-slate-500">
+                <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
                     {product.stockStatus}
                 </p>
                 {/* Prices & "Add to cart" button */}
@@ -66,18 +66,18 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <div className="flex flex-col">
                         <span>
                             {product.originalPrice && (
-                                <span className="text-[10px] text-slate-400 line-through font-medium leading-none">
+                                <span className="text-[10px] text-slate-400 dark:text-slate-500 line-through font-medium leading-none">
                                     {product.originalPrice} kr
                                 </span>
                             )}
                         </span>
-                        <span className="text-lg font-black text-slate-900 tracking-tight">
+                        <span className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
                             {product.price} kr
                         </span>
                     </div>
 
                     <button type="button"
-                            className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 text-xs font-bold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-200 active:scale-95 group/btn"
+                            className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-slate-900 dark:bg-blue-600 px-5 text-xs font-bold text-white transition-all duration-300 hover:bg-blue-600 dark:hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-200 dark:hover:shadow-blue-900 active:scale-95 group/btn"
                             aria-label="Add to cart">
                         Add to cart
                     </button>

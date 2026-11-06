@@ -5,7 +5,6 @@ import SidebarFilters from "./components/filters/SidebarFilters.tsx";
 import ProductGrid from "./components/products/ProductGrid.tsx";
 import {products} from "./data/product.ts";
 import {useState} from 'react';
-
 function App() {
 
     const maxPrice = Math.max(...products.map((p) => p.price));
@@ -47,8 +46,7 @@ function App() {
     });
 
     return (
-        <div
-            className="min-h-screen bg-slate-100/30 text-slate-950 antialiased font-sans flex flex-col justify-between">
+        <div className="min-h-screen antialiased font-sans flex flex-col justify-between transition-colors duration-300 bg-slate-100/30 text-slate-950 dark:bg-slate-950 dark:text-slate-50">
             <Navbar
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}

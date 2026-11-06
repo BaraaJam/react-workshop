@@ -1,6 +1,7 @@
-import {User, Menu, Package} from "lucide-react";
+import {User, Menu, Package, Sun, Moon} from "lucide-react";
 import SearchInput from "./SearchInput";
 import CartButton from "./CartButton";
+import { useTheme } from "../../hooks/useTheme";
 
 const NAV_LINKS = ['New Arrival', 'Men', 'Women', 'Sale'];
 
@@ -10,6 +11,9 @@ interface NavbarProps {
 }
 
 export default function Navbar({ searchTerm, onSearchChange }: NavbarProps) {
+
+    const { isDarkMode, handelToggleTheme } = useTheme();
+
     return (
         <header className="sticky top-0 z-40 border-b border-blue-700/30 bg-blue-600 shadow-lg shadow-blue-900/10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -58,6 +62,16 @@ export default function Navbar({ searchTerm, onSearchChange }: NavbarProps) {
                                 className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/30 text-blue-50 transition-all duration-200 hover:text-white hover:bg-blue-500/50 border border-blue-400/20"
                                 aria-label="Account" title="Account">
                             <User size={20}/>
+                        </button>
+                        {/* Theme Toggle Button */}
+                        <button
+                            type="button"
+                            onClick={handelToggleTheme}
+                            className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/30 text-blue-50 transition-all duration-200 hover:text-white hover:bg-blue-500/50 border border-blue-400/20 cursor-pointer"
+                            aria-label="Toggle Theme"
+                            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                        >
+                            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
                         </button>
                         {/* Mobile Menu Button */}
                         <button type="button"

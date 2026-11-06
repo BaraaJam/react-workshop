@@ -34,7 +34,7 @@ export default function SidebarFilters({
     return (
         <aside className="lg:col-span-3 lg:sticky lg:top-20 self-start">
             <div
-                className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-400 p-5">
+                className="border border-slate-200 dark:border-slate-800 rounded-[1.25rem] bg-slate-50/50 dark:bg-slate-900/60 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-400 dark:hover:border-blue-500 p-5">
                 <CategoryFilter
                     products={products}
                     filteredProducts={filteredProducts}
@@ -42,7 +42,7 @@ export default function SidebarFilters({
                     onSelectCategory={onSelectCategory}
                 />
 
-                <div className="my-5 h-px bg-slate-100"></div>
+                <div className="my-5 h-px bg-slate-100 dark:bg-slate-800"></div>
 
                 <PriceFilter
                     min={0}
@@ -51,10 +51,10 @@ export default function SidebarFilters({
                     onChange={onPriceChange}
                 />
 
-                <div className="my-5 h-px bg-slate-100"></div>
+                <div className="my-5 h-px bg-slate-100 dark:bg-slate-800"></div>
 
                 <section aria-labelledby="filters-availability" className="space-y-4">
-                    <h2 id="filters-availability" className="text-sm font-bold text-slate-900">Availability</h2>
+                    <h2 id="filters-availability" className="text-sm font-bold text-slate-900 dark:text-white">Availability</h2>
 
                     <div className="space-y-3">
                         <label className="flex items-center gap-3 cursor-pointer select-none">
@@ -62,9 +62,9 @@ export default function SidebarFilters({
                                 type="checkbox"
                                 checked={filterInStock}
                                 onChange={(e) => setFilterInStock(e.target.checked)}
-                                className="h-4.5 w-4.5 rounded-md border border-slate-200 accent-blue-600 cursor-pointer"
+                                className="h-4.5 w-4.5 rounded-md border border-slate-200 dark:border-slate-700 accent-blue-600 cursor-pointer"
                             />
-                            <span className="flex-1 text-sm text-slate-700">In Stock</span>
+                            <span className="flex-1 text-sm text-slate-700 dark:text-slate-300">In Stock</span>
                         </label>
 
                         <label className="flex items-center gap-3 cursor-pointer select-none">
@@ -72,9 +72,9 @@ export default function SidebarFilters({
                                 type="checkbox"
                                 checked={filterOnSale}
                                 onChange={(e) => setFilterOnSale(e.target.checked)}
-                                className="h-4.5 w-4.5 rounded-md border border-slate-200 accent-blue-600 cursor-pointer"
+                                className="h-4.5 w-4.5 rounded-md border border-slate-200 dark:border-slate-700 accent-blue-600 cursor-pointer"
                             />
-                            <span className="flex-1 text-sm text-slate-700">On Sale</span>
+                            <span className="flex-1 text-sm text-slate-700 dark:text-slate-300">On Sale</span>
                         </label>
                     </div>
                 </section>

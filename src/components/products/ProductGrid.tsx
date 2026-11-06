@@ -30,20 +30,20 @@ export default function ProductGrid({ products, totalCount }: ProductGridProps) 
     const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
     return (
         <section className="lg:col-span-9">
-            <div className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-400 p-5">
+            <div className="border border-slate-200 dark:border-slate-800 rounded-[1.25rem] bg-slate-50/50 dark:bg-slate-900/60 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-400 dark:hover:border-blue-500 p-5">
                 {/* 1. Title + Sort dropdown */}
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <h1 className="text-xl font-bold tracking-tight text-slate-900">Recommended for you</h1>
-                        <p className="text-xs text-slate-500 font-medium">
+                    <h1 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Recommended for you</h1>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                             Showing {products.length} of {totalCount} products
                         </p>
-                    <label className="inline-flex items-center gap-2 text-sm text-slate-600">
+                    <label className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                         <span className="hidden sm:inline">Sort by:</span>
                         <div className="relative">
                             <select
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value)}
-                                className="appearance-none border border-slate-200 bg-white rounded-xl py-2 pl-3 pr-9 text-sm text-slate-950 transition-all duration-200 outline-none cursor-pointer focus:border-blue-400 focus:ring-4 focus:ring-blue-600/10"
+                                className="appearance-none border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl py-2 pl-3 pr-9 text-sm text-slate-950 dark:text-slate-100 transition-all duration-200 outline-none cursor-pointer focus:border-blue-400 focus:ring-4 focus:ring-blue-600/10"
                             >
                                 <option value="Name">Name</option>
                                 <option value="Newest">Newest</option>
@@ -56,15 +56,15 @@ export default function ProductGrid({ products, totalCount }: ProductGridProps) 
                     </label>
                 </div>
 
-                <div className="mt-5 mb-6 h-px bg-slate-100"></div>
+                <div className="mt-5 mb-6 h-px bg-slate-100 dark:bg-slate-800"></div>
 
                 {products.length === 0 ? (
                     <div className="py-16 text-center">
-                        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 mb-4">
+                        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 mb-4">
                             <SearchX size={32} />
                         </div>
-                        <h3 className="text-lg font-bold text-slate-900 mb-1">No products found</h3>
-                        <p className="text-sm text-slate-500 max-w-sm mx-auto">
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">No products found</h3>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
                             We couldn't find any products matching your search. Try checking for typos or searching for a different keyword.
                         </p>
                     </div>
